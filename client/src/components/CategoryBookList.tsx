@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../assets/css/CategoryBookList.css";
 import "../assets/css/global.css";
 import Card from "./Card";
@@ -109,21 +109,19 @@ import diyStringArt from "../assets/images/books/diyStringArt.jpg";
 
 // Default image
 import noImage from "../assets/images/books/no-image.jpg";
+import { CategoryContext } from "../contexts/CategoryContext";
 
 interface CategoryPageProps {
-  categories: Category[];
   toggleSignIn: () => void;
 }
 
-const CategoryPage: React.FC<CategoryPageProps> = ({
-  categories,
-  toggleSignIn,
-}) => {
+const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
   const { categoryName = "New Releases" } = useParams<{
     categoryName: string;
   }>();
   const [bookList, setBookList] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const categoryList = useContext<Category[]>(CategoryContext);
 
   // Function to add picture paths to each book
   const addLocalImagePaths = (books: Book[], categoryName: string) => {
@@ -255,7 +253,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({
   return (
     <>
       <CategoryNavBar
-        otherCategories={categories.slice(5)}
+        otherCategories={categoryList.slice(5)}
         toggleSignIn={toggleSignIn}
       />
       {loading ? (
