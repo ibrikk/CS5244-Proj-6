@@ -238,8 +238,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({
     setLoading(true);
     axios
       .get(
-        // `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactFetch/api/categories/name/${categoryName}/books`
-        `http://localhost:8080/IbrahimBookstoreReactFetch/api/categories/name/${categoryName}/books`
+        // `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
+        `http://localhost:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
       )
       .then((result) => {
         const booksWithImages = addLocalImagePaths(result.data, categoryName);

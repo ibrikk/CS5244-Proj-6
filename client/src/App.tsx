@@ -22,8 +22,8 @@ const App = () => {
   useEffect(() => {
     axios
       .get(
-        // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactFetch/api/categories"
-        "http://localhost:8080/IbrahimBookstoreReactFetch/api/categories"
+        // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories"
+        "http://localhost:8080/IbrahimBookstoreReactState/api/categories"
       )
       .then((result) => setCategories(result.data))
       .catch(console.error);
