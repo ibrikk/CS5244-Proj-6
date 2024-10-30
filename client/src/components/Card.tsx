@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View } from "lucide-react";
 import { Book } from "../types";
 import "../assets/css/CategoryBookList.css";
@@ -27,9 +27,16 @@ const Card: React.FC<CardProps> = ({ book, isHomePage }) => {
   } = book;
 
   const { dispatch } = useContext(CartContext);
+  const [isClicked, setIsClicked] = useState(false);
 
   const addBookToCart = () => {
     dispatch({ type: CartTypes.ADD, item: book, id: book.bookId });
+
+    // Set clicked state to true to trigger CSS change
+    setIsClicked(true);
+
+    // Reset clicked state after 200ms to remove CSS class
+    setTimeout(() => setIsClicked(false), 200);
   };
 
   return (
@@ -49,7 +56,10 @@ const Card: React.FC<CardProps> = ({ book, isHomePage }) => {
       <div className="price-add">
         <p>${price}</p>
         {!isHomePage && (
-          <button className="add-to-cart-btn" onClick={() => addBookToCart()}>
+          <button
+            className={`add-to-cart-btn ${isClicked ? "clicked" : ""}`}
+            onClick={() => addBookToCart()}
+          >
             Add to cart
           </button>
         )}

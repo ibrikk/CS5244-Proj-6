@@ -69,3 +69,7 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.add-to-cart-btn.clicked {
+  background-color: #ff784e;
+}

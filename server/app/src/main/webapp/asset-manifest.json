@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/IbrahimBookstoreReactState/static/css/main.0bec6bbc.css",
-    "main.js": "/IbrahimBookstoreReactState/static/js/main.17faf281.js",
+    "main.css": "/IbrahimBookstoreReactState/static/css/main.51d8c237.css",
+    "main.js": "/IbrahimBookstoreReactState/static/js/main.eef4bc9f.js",
     "static/js/453.258b012d.chunk.js": "/IbrahimBookstoreReactState/static/js/453.258b012d.chunk.js",
     "static/media/diyStringArt.jpg": "/IbrahimBookstoreReactState/static/media/diyStringArt.178a865be904c854a73b.jpg",
     "static/media/hero-image.jpg": "/IbrahimBookstoreReactState/static/media/hero-image.37982058ad0657bc657a.jpg",
@@ -79,12 +79,12 @@
     "static/media/no-image.jpg": "/IbrahimBookstoreReactState/static/media/no-image.8cf7b26940e93e1231d5.jpg",
     "static/media/foodLab.jpg": "/IbrahimBookstoreReactState/static/media/foodLab.5bfc1bc647f9b4826ab2.jpg",
     "index.html": "/IbrahimBookstoreReactState/index.html",
-    "main.0bec6bbc.css.map": "/IbrahimBookstoreReactState/static/css/main.0bec6bbc.css.map",
-    "main.17faf281.js.map": "/IbrahimBookstoreReactState/static/js/main.17faf281.js.map",
+    "main.51d8c237.css.map": "/IbrahimBookstoreReactState/static/css/main.51d8c237.css.map",
+    "main.eef4bc9f.js.map": "/IbrahimBookstoreReactState/static/js/main.eef4bc9f.js.map",
     "453.258b012d.chunk.js.map": "/IbrahimBookstoreReactState/static/js/453.258b012d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0bec6bbc.css",
-    "static/js/main.17faf281.js"
+    "static/css/main.51d8c237.css",
+    "static/js/main.eef4bc9f.js"
   ]
 }
