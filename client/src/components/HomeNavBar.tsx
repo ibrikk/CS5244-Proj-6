@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CategoryItem } from "../Types";
+import { CategoryContext } from "../contexts/CategoryContext"; // Update to correct path
 
 interface HomeNavBarProps {
   toggleSignIn: () => void;
-  categories: CategoryItem[];
 }
 
-const HomeNavBar: React.FC<HomeNavBarProps> = ({
-  toggleSignIn,
-  categories,
-}) => {
+const HomeNavBar: React.FC<HomeNavBarProps> = ({ toggleSignIn }) => {
   const navigate = useNavigate();
+  const [categoryList] = useContext(CategoryContext);
+
   return (
     <nav className="grid grid-full">
       <div className="custom-select">
         <select>
-          {categories.map((category, index) => (
+          {categoryList.map((category: CategoryItem, index: number) => (
             <option key={index} value={category.categoryId}>
               {category.name}
             </option>
@@ -24,7 +23,7 @@ const HomeNavBar: React.FC<HomeNavBarProps> = ({
         </select>
         <div className="select-styled">Categories</div>
         <ul className="select-options">
-          {categories.map((category: CategoryItem, index: number) => (
+          {categoryList.map((category: CategoryItem, index: number) => (
             <li
               key={index}
               onClick={() => navigate(`/category/${category.name}`)}
@@ -42,7 +41,7 @@ const HomeNavBar: React.FC<HomeNavBarProps> = ({
         <span className="material-symbols-outlined search-icon">search</span>
       </div>
       <div className="homepage-categories" onClick={toggleSignIn}>
-        {categories.slice(0, 5).map((category, idx) => (
+        {categoryList.slice(0, 5).map((category: CategoryItem, idx: number) => (
           <Link
             key={idx}
             to={`/category/${category.name}`}

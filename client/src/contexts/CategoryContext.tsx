@@ -1,8 +1,22 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useReducer,
+} from "react";
 import axios from "axios";
 import { CategoryItem } from "../Types";
+import {
+  categoryReducer,
+  SetCategoriesAction,
+  SET_CATEGORIES,
+} from "../reducers/CategoryReducer";
 
-export const CategoryContext = createContext<CategoryItem[] | []>([]);
+export const CategoryContext = createContext<
+  [CategoryItem[], React.Dispatch<SetCategoriesAction>]
+>([[], () => null]);
+
 CategoryContext.displayName = "CategoryContext";
 
 interface CategoryProviderProps {
@@ -10,20 +24,22 @@ interface CategoryProviderProps {
 }
 
 const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) => {
-  const [categoryList, setCategoryList] = useState<CategoryItem[]>([]);
+  const [categoryList, dispatch] = useReducer(categoryReducer, []);
 
   useEffect(() => {
     axios
       .get(
-        "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories"
+        // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories"
+        "http://localhost:8080/IbrahimBookstoreReactState/api/categories"
       )
-      // .get("http://localhost:8080/IbrahimBookstoreReactState/api/categories")
-      .then((result) => setCategoryList(result.data))
+      .then((result) =>
+        dispatch({ type: SET_CATEGORIES, payload: result.data })
+      )
       .catch(console.error);
   }, []);
 
   return (
-    <CategoryContext.Provider value={categoryList}>
+    <CategoryContext.Provider value={[categoryList, dispatch]}>
       {children}
     </CategoryContext.Provider>
   );

@@ -121,7 +121,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
   }>();
   const [bookList, setBookList] = useState<BookItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const categoryList = useContext<CategoryItem[]>(CategoryContext);
+  const categoryList = useContext(CategoryContext);
 
   // Function to add picture paths to each book
   const addLocalImagePaths = (books: BookItem[], categoryName: string) => {
@@ -236,8 +236,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
     setLoading(true);
     axios
       .get(
-        `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
-        // `http://localhost:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
+        // `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
+        `http://localhost:8080/IbrahimBookstoreReactState/api/categories/name/${categoryName}/books`
       )
       .then((result) => {
         const booksWithImages = addLocalImagePaths(result.data, categoryName);
@@ -253,7 +253,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
   return (
     <>
       <CategoryNavBar
-        otherCategories={categoryList.slice(5)}
+        otherCategories={categoryList[0].slice(5)}
         toggleSignIn={toggleSignIn}
       />
       {loading ? (

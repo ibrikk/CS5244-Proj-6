@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Dispatch, useContext, useEffect, useState } from "react";
 import Hero from "./Hero";
 import HomeNavBar from "./HomeNavBar";
 import Card from "./Card";
@@ -32,6 +32,7 @@ import imaginedCommunities from "../assets/images/books/imagined communities.jpg
 
 // No image
 import noImage from "../assets/images/books/no-image.jpg";
+import { SetCategoriesAction } from "../reducers/CategoryReducer";
 
 interface HomePageProps {
   toggleSignIn: () => void;
@@ -41,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
   const [categoryOneBooks, setCategoryOneBooks] = useState<BookItem[]>([]);
   const [categoryTwoBooks, setCategoryTwoBooks] = useState<BookItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const categoryList = useContext<CategoryItem[]>(CategoryContext);
+  const [categoryList] = useContext(CategoryContext);
 
   // Function to add picture paths to each book
   const addLocalImagePaths = (books: BookItem[], categoryId: number) => {
@@ -72,13 +73,13 @@ const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
   useEffect(() => {
     // Fetch category one books
     const fetchCategoryOneBooks = axios.get(
-      "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/1001/books"
-      // "http://localhost:8080/IbrahimBookstoreReactState/api/categories/1001/books"
+      // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/1001/books"
+      "http://localhost:8080/IbrahimBookstoreReactState/api/categories/1001/books"
     );
     // Fetch category two books
     const fetchCategoryTwoBooks = axios.get(
-      "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/1002/books"
-      // "http://localhost:8080/IbrahimBookstoreReactState/api/categories/1002/books"
+      // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories/1002/books"
+      "http://localhost:8080/IbrahimBookstoreReactState/api/categories/1002/books"
     );
 
     Promise.all([fetchCategoryOneBooks, fetchCategoryTwoBooks])
@@ -98,7 +99,7 @@ const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
 
   return (
     <>
-      <HomeNavBar toggleSignIn={toggleSignIn} categories={categoryList} />
+      <HomeNavBar toggleSignIn={toggleSignIn} />
 
       <Hero firstCategory={categoryList[0]?.name} />
 
