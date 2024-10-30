@@ -88,7 +88,7 @@ export interface BookMock {
   isPublic: boolean;
 }
 
-export interface Book {
+export interface BookItem {
   bookId: number;
   categoryId: number;
   title: string;
@@ -106,17 +106,17 @@ export interface CategoryMock {
   books: BookMock[];
 }
 
-export interface Category {
+export interface CategoryItem {
   categoryId: number;
   name: string;
 }
 
 export class ShoppingCartItem {
   id: number;
-  book: Book;
+  book: BookItem;
   quantity: number;
 
-  constructor(theBook: Book) {
+  constructor(theBook: BookItem) {
     this.id = theBook.bookId;
     this.book = theBook;
     this.quantity = 1;

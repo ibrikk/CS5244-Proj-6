@@ -1,11 +1,11 @@
-import { Book } from "../types";
+import { BookItem } from "../Types";
 
 import { Dispatch, ReducerAction } from "react";
 
 //this interface represents the items(books) in our shopping cart
 export interface ShoppingCartItem {
   id: number;
-  items: Book;
+  items: BookItem;
   quantity: number;
 }
 
@@ -18,7 +18,7 @@ export const CartTypes = {
 type AppActions = {
   id: number;
   type: "ADD" | "REMOVE" | "CLEAR";
-  item: Book;
+  item: BookItem;
 };
 
 export const cartReducer = (

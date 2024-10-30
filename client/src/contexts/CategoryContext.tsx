@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
-import { Category } from "../types"; // Updated name for the category type
+import { CategoryItem } from "../Types";
 
-export const CategoryContext = createContext<Category[] | []>([]); // Updated context name
+export const CategoryContext = createContext<CategoryItem[] | []>([]);
 CategoryContext.displayName = "CategoryContext";
 
 interface CategoryProviderProps {
@@ -10,7 +10,7 @@ interface CategoryProviderProps {
 }
 
 const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) => {
-  const [categoryList, setCategoryList] = useState<Category[]>([]);
+  const [categoryList, setCategoryList] = useState<CategoryItem[]>([]);
 
   useEffect(() => {
     axios

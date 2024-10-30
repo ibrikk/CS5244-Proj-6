@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View } from "lucide-react";
-import { Book } from "../types";
+import { BookItem } from "../Types";
 import "../assets/css/CategoryBookList.css";
 import "../assets/css/Home.css";
 import "../assets/css/global.css";
@@ -9,7 +9,7 @@ import { CartContext } from "../contexts/CartContext";
 
 interface CardProps {
   isHomePage: boolean;
-  book: Book;
+  book: BookItem;
 }
 
 const Card: React.FC<CardProps> = ({ book, isHomePage }) => {

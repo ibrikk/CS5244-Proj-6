@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Hero from "./Hero";
 import HomeNavBar from "./HomeNavBar";
 import Card from "./Card";
-import { Book, Category } from "../types";
+import { BookItem, CategoryItem } from "../Types";
 import "../assets/css/global.css";
 import "../assets/css/Home.css";
 import "../assets/css/CategoryBookList.css";
@@ -38,13 +38,13 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
-  const [categoryOneBooks, setCategoryOneBooks] = useState<Book[]>([]);
-  const [categoryTwoBooks, setCategoryTwoBooks] = useState<Book[]>([]);
+  const [categoryOneBooks, setCategoryOneBooks] = useState<BookItem[]>([]);
+  const [categoryTwoBooks, setCategoryTwoBooks] = useState<BookItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const categoryList = useContext<Category[]>(CategoryContext);
+  const categoryList = useContext<CategoryItem[]>(CategoryContext);
 
   // Function to add picture paths to each book
-  const addLocalImagePaths = (books: Book[], categoryId: number) => {
+  const addLocalImagePaths = (books: BookItem[], categoryId: number) => {
     const imageMap: { [key: number]: { [key: number]: string } } = {
       1001: {
         1001: img1984,
@@ -63,7 +63,7 @@ const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
         1012: imaginedCommunities,
       },
     };
-    return books.map((book: Book) => ({
+    return books.map((book: BookItem) => ({
       ...book,
       picture: imageMap[categoryId][book.bookId] || noImage, // Fallback to default image
     }));
@@ -108,14 +108,14 @@ const HomePage: React.FC<HomePageProps> = ({ toggleSignIn }) => {
         <section className="grid grid-full">
           <h3 className="homepage-category-name">{categoryList[0]?.name}</h3>
           <div className="cards-container grid grid-full">
-            {categoryOneBooks.map((book: Book) => (
+            {categoryOneBooks.map((book: BookItem) => (
               <Card key={book.bookId} book={book} isHomePage={true} />
             ))}
           </div>
 
           <h3 className="homepage-category-name">{categoryList[1]?.name}</h3>
           <div className="cards-container grid grid-full">
-            {categoryTwoBooks.map((book: Book) => (
+            {categoryTwoBooks.map((book: BookItem) => (
               <Card key={book.bookId} book={book} isHomePage={true} />
             ))}
           </div>

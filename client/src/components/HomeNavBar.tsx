@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Category } from "../types";
+import { CategoryItem } from "../Types";
 
 interface HomeNavBarProps {
   toggleSignIn: () => void;
-  categories: Category[];
+  categories: CategoryItem[];
 }
 
 const HomeNavBar: React.FC<HomeNavBarProps> = ({
@@ -24,7 +24,7 @@ const HomeNavBar: React.FC<HomeNavBarProps> = ({
         </select>
         <div className="select-styled">Categories</div>
         <ul className="select-options">
-          {categories.map((category, index) => (
+          {categories.map((category: CategoryItem, index: number) => (
             <li
               key={index}
               onClick={() => navigate(`/category/${category.name}`)}

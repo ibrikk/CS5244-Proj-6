@@ -4,7 +4,7 @@ import "../assets/css/global.css";
 import Card from "./Card";
 import CategoryNavBar from "./CategoryNavBar";
 import { useParams } from "react-router-dom";
-import { Book, BookMock, Category, CategoryMock } from "../types";
+import { BookItem, CategoryItem } from "../Types";
 import axios from "axios";
 import Spinner from "./Spinner";
 
@@ -119,12 +119,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
   const { categoryName = "New Releases" } = useParams<{
     categoryName: string;
   }>();
-  const [bookList, setBookList] = useState<Book[]>([]);
+  const [bookList, setBookList] = useState<BookItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const categoryList = useContext<Category[]>(CategoryContext);
+  const categoryList = useContext<CategoryItem[]>(CategoryContext);
 
   // Function to add picture paths to each book
-  const addLocalImagePaths = (books: Book[], categoryName: string) => {
+  const addLocalImagePaths = (books: BookItem[], categoryName: string) => {
     const imageMap: { [key: string]: { [key: number]: string } } = {
       "New Releases": {
         1001: img1984,
@@ -226,7 +226,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
       },
     };
 
-    return books.map((book: Book) => ({
+    return books.map((book: BookItem) => ({
       ...book,
       picture: imageMap[categoryName][book.bookId] || noImage, // Fallback to default image
     }));
@@ -265,7 +265,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
       ) : (
         <div className="grid grid-full">
           <div className="cards-container grid grid-full">
-            {bookList.map((book: Book) => (
+            {bookList.map((book: BookItem) => (
               <Card key={book.bookId} book={book} isHomePage={false} />
             ))}
           </div>

@@ -2,10 +2,10 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "../assets/css/CategoryBookList.css";
 import "../assets/css/global.css";
-import { Category } from "../types";
+import { CategoryItem } from "../Types";
 
 interface CategoryNavBarProps {
-  otherCategories: Category[];
+  otherCategories: CategoryItem[];
   toggleSignIn: () => void;
 }
 
@@ -26,7 +26,7 @@ const CategoryNavBar: React.FC<CategoryNavBarProps> = ({
         <span className="material-symbols-outlined search-icon">search</span>
       </div>
       <div className="homepage-categories" onClick={toggleSignIn}>
-        {otherCategories.map((category) => (
+        {otherCategories.map((category: CategoryItem) => (
           <Link
             key={category.categoryId}
             to={`/category/${category.name}`}

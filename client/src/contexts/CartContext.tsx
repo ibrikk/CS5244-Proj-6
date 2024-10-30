@@ -1,13 +1,8 @@
 import { createContext, useReducer, Dispatch, ReactNode } from "react";
-import {
-  cartReducer,
-  CartTypes,
-  ShoppingCartItem,
-} from "../reducers/CartReducer";
+import { cartReducer, ShoppingCartItem } from "../reducers/CartReducer";
 
 const initialCartState: ShoppingCartItem[] = [];
 
-// Define the context with an empty initial state and dispatch placeholder
 export const CartContext = createContext<{
   cart: ShoppingCartItem[];
   dispatch: Dispatch<any>;
