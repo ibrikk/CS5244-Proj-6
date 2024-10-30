@@ -14,7 +14,10 @@ const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/IbrahimBookstoreReactState/api/categories")
+      .get(
+        "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactState/api/categories"
+      )
+      // .get("http://localhost:8080/IbrahimBookstoreReactState/api/categories")
       .then((result) => setCategoryList(result.data))
       .catch(console.error);
   }, []);
