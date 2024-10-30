@@ -111,6 +111,18 @@ export interface Category {
   name: string;
 }
 
+export class ShoppingCartItem {
+  id: number;
+  book: Book;
+  quantity: number;
+
+  constructor(theBook: Book) {
+    this.id = theBook.bookId;
+    this.book = theBook;
+    this.quantity = 1;
+  }
+}
+
 const mockData: CategoryMock[] = [
   {
     id: 1001,

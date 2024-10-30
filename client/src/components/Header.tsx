@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag } from "lucide-react";
 import "../assets/css/AppHeader.css";
 import "../assets/css/global.css";
 import profilePic from "../assets/images/site/profile-pic.svg";
+import { CartContext } from "../contexts/CartContext";
 
 interface HeaderProps {
   isSignedIn: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ isSignedIn }) => {
+  const { cart } = useContext(CartContext);
+
+  const cartQuantity = cart.reduce((total, item) => total + item.quantity, 0);
   return (
     <header className="grid grid-full">
       <section className="grid grid-full">
@@ -36,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ isSignedIn }) => {
           </Link>
           <Link to="/" className="shopping-bag">
             <ShoppingBag color="black" />
-            <span className="badge">3</span>
+            <span className="badge">{cartQuantity}</span>
           </Link>
         </div>
       </section>

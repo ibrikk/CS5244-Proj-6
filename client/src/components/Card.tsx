@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View } from "lucide-react";
-import { Book, BookMock } from "../types";
+import { Book } from "../types";
 import "../assets/css/CategoryBookList.css";
 import "../assets/css/Home.css";
 import "../assets/css/global.css";
+import { CartTypes } from "../reducers/CartReducer";
+import { CartContext } from "../contexts/CartContext";
 
 interface CardProps {
   isHomePage: boolean;
@@ -23,6 +25,13 @@ const Card: React.FC<CardProps> = ({ book, isHomePage }) => {
     rating,
     picture,
   } = book;
+
+  const { dispatch } = useContext(CartContext);
+
+  const addBookToCart = () => {
+    dispatch({ type: CartTypes.ADD, item: book, id: book.bookId });
+  };
+
   return (
     <div className="card">
       <div className="book-image-read-btn-container">
@@ -40,7 +49,9 @@ const Card: React.FC<CardProps> = ({ book, isHomePage }) => {
       <div className="price-add">
         <p>${price}</p>
         {!isHomePage && (
-          <button className="add-to-cart-btn">Add to cart</button>
+          <button className="add-to-cart-btn" onClick={() => addBookToCart()}>
+            Add to cart
+          </button>
         )}
       </div>
     </div>
